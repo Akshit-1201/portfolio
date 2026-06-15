@@ -1,0 +1,16 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch();
+const wait = (ms) => new Promise((r)=>setTimeout(r, ms));
+const errs=[];
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 } });
+const p = await ctx.newPage();
+p.on('console', m=>m.type()==='error'&&errs.push(m.text()));
+await p.goto('http://localhost:5173/', { waitUntil:'networkidle', timeout:60000 }).catch(()=>{});
+await p.evaluate(()=>document.fonts.ready); await wait(900);
+const h = await p.evaluate(()=>document.querySelector('#top').offsetHeight);
+console.log('hero h', h);
+await p.screenshot({ path:'screenshots/m2-full.png', fullPage:false });
+await p.evaluate(()=>window.scrollTo(0, Math.max(0, document.querySelector('#top').offsetHeight-844)));
+await wait(500);
+await p.screenshot({ path:'screenshots/m2-bottom.png' });
+await ctx.close(); await b.close(); console.log('ERR', errs.length, 'done');
