@@ -1,4 +1,5 @@
 import { MotionConfig } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import Navbar from './components/Navbar';
 import HeroSection from './sections/HeroSection';
 import MarqueeSection from './sections/MarqueeSection';
@@ -22,6 +23,9 @@ export default function App() {
         <SkillsSection />
         <PublicationSection />
         <ContactSection />
+        {/* Privacy-friendly visitor analytics — inert in local dev, reports
+            only when deployed on Vercel. Dashboard: Vercel → project → Analytics. */}
+        <Analytics />
       </main>
     </MotionConfig>
   );

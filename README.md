@@ -8,6 +8,7 @@ A dark, animated personal portfolio for **Akshit Negi**, AI Engineer. Single‑p
 - **Tailwind CSS** (Kanit font, `#0C0C0C` dark theme)
 - **Framer Motion** — reveals, scroll‑stacking, reduced‑motion support
 - **Lucide React** — icons
+- **Vercel Web Analytics** — privacy‑friendly visitor counts (see [`analytics.md`](analytics.md))
 
 ## Getting started
 
